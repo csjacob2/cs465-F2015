@@ -1,6 +1,6 @@
 package com.messager.og2.cs465.cs465messager;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
