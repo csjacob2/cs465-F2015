@@ -4,15 +4,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
+    Spinner spinner;
+    RelativeLayout mainLayout;
+    final static String[] spinnerList = {
+            "Family",
+            "Friends",
+            "Co-Workers",
+            "+ Create Group..."
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
+        spinner = (Spinner)this.findViewById(R.id.group_spinner);
+        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
     }
 
+    public void clickcheck(View v) {
+        System.out.println("###############h:" + mainLayout.getMeasuredHeight() + "|w:" + mainLayout.getMeasuredWidth());
+        System.out.println("###############h:" + mainLayout.getHeight() + "|w:" + mainLayout.getWidth());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
