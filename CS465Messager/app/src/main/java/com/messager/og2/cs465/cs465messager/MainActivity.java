@@ -10,10 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class MainActivity extends Activity {
     Spinner spinner;
     RelativeLayout mainLayout;
@@ -40,7 +36,7 @@ public class MainActivity extends Activity {
             new Conversation(people[2],
                     new ConversationEntry[] {
                             new ConversationEntry(people[0], "How are you?"),
-                            new ConversationEntry(people[1], "Good, you?"),
+                            new ConversationEntry(people[2], "Good, you?"),
                             new ConversationEntry(people[0], "Fine")
                     },
                     false,
@@ -62,8 +58,7 @@ public class MainActivity extends Activity {
     }
 
     public void openMessageView(View v) {
-        Intent myIntent = new Intent(this, MessageViewActivity.class);
-        //myIntent.putExtra("key", value); //Optional parameters
+        Intent myIntent = new Intent(MainActivity.this, MessageViewActivity.class);
         this.startActivity(myIntent);
     }
 
