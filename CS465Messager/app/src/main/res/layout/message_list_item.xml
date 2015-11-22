@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+android:layout_height="?android:attr/listPreferredItemHeight"
+
+android:padding="6dip"
+    tools:context=".MessageViewActivity">
+
+<!-- Urgent marker -->
+<TextView
+    android:id="@+id/urgent"
+
+    android:layout_width="wrap_content"
+    android:layout_height="26dip"
+
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    />
+
+<!-- Person's image -->
+<ImageView
+    android:id="@+id/image"
+
+    android:layout_width="wrap_content"
+    android:layout_height="26dip"
+
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@id/urgent"
+    />
+
+<!-- Person's name -->
+<TextView
+    android:id="@+id/name"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@id/image"
+
+    android:singleLine="true"
+    android:ellipsize="marquee"
+    />
+
+<!-- Conversation timestamp -->
+<TextView
+    android:id="@+id/timestamp"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@id/name"
+
+    android:singleLine="true"
+    android:ellipsize="marquee"
+    />
+
+<!-- Last conversation entry -->
+<TextView
+    android:id="@+id/text"
+
+    android:layout_width="wrap_content"
+    android:layout_height="26dip"
+
+    android:layout_alignParentLeft="true"
+    android:layout_below="@id/name"
+
+    android:textStyle="bold"
+    android:gravity="center_vertical"
+    />
+
+</RelativeLayout>

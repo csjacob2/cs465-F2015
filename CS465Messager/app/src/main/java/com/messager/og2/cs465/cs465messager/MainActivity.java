@@ -1,6 +1,7 @@
 package com.messager.og2.cs465.cs465messager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends Activity {
     Spinner spinner;
@@ -18,19 +23,36 @@ public class MainActivity extends Activity {
             "Co-Workers",
             "+ Create Group..."
     };
+//    static Person[] people = {
+//            new Person("Me"),
+//            new Person("Bob"),
+//            new Person("Mom")
+//    };
+//    static List<Conversation> conversations = Arrays.asList(
+//        new Conversation(new ConversationEntry[] {
+//            new ConversationEntry(people[0], "Hey"),
+//            new ConversationEntry(people[1], "What's up?"),
+//            new ConversationEntry(people[0], "Nothing!")
+//    }));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
-        spinner = (Spinner)this.findViewById(R.id.group_spinner);
-        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
+//        mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
+//        spinner = (Spinner)this.findViewById(R.id.group_spinner);
+//        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
     }
 
     public void clickcheck(View v) {
         System.out.println("###############h:" + mainLayout.getMeasuredHeight() + "|w:" + mainLayout.getMeasuredWidth());
         System.out.println("###############h:" + mainLayout.getHeight() + "|w:" + mainLayout.getWidth());
+    }
+
+    public void openMessageView(View v) {
+        Intent myIntent = new Intent(this, MessageViewActivity.class);
+        //myIntent.putExtra("key", value); //Optional parameters
+        this.startActivity(myIntent);
     }
 
     @Override
