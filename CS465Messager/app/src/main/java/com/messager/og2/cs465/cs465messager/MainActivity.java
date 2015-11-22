@@ -23,25 +23,37 @@ public class MainActivity extends Activity {
             "Co-Workers",
             "+ Create Group..."
     };
-//    static Person[] people = {
-//            new Person("Me"),
-//            new Person("Bob"),
-//            new Person("Mom")
-//    };
-//    static List<Conversation> conversations = Arrays.asList(
-//        new Conversation(new ConversationEntry[] {
-//            new ConversationEntry(people[0], "Hey"),
-//            new ConversationEntry(people[1], "What's up?"),
-//            new ConversationEntry(people[0], "Nothing!")
-//    }));
+    static Person[] people = {
+            new Person("Me",  R.drawable.ppc1),
+            new Person("Bob", R.drawable.ppc2),
+            new Person("Mom", R.drawable.ppc3)
+    };
+    static Conversation[] conversations = {
+            new Conversation(people[1],
+                    new ConversationEntry[] {
+                            new ConversationEntry(people[0], "Hey"),
+                            new ConversationEntry(people[1], "What's up?"),
+                            new ConversationEntry(people[0], "Nothing! Blah blah blah blah this is a very long line.")
+                    },
+                    true,
+                    "7 days ago"),
+            new Conversation(people[2],
+                    new ConversationEntry[] {
+                            new ConversationEntry(people[0], "How are you?"),
+                            new ConversationEntry(people[1], "Good, you?"),
+                            new ConversationEntry(people[0], "Fine")
+                    },
+                    false,
+                    "Just now")
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
-//        spinner = (Spinner)this.findViewById(R.id.group_spinner);
-//        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
+        mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
+        spinner = (Spinner)this.findViewById(R.id.group_spinner);
+        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
     }
 
     public void clickcheck(View v) {

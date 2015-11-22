@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -17,6 +18,12 @@ public class MessageViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_view);
+
+        MessageViewAdapter adapter = new MessageViewAdapter(this, R.layout.message_list_item, MainActivity.conversations);
+
+        ListView msgListView;
+        msgListView = (ListView)findViewById(R.id.message_list);
+        msgListView.setAdapter(adapter);
     }
 
     @Override
@@ -39,5 +46,9 @@ public class MessageViewActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goBack(View v) {
+        onBackPressed();
     }
 };
