@@ -103,8 +103,8 @@
         android:layout_height="48dp"
         android:background="@drawable/ppc1"
         android:id="@+id/button"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="42dp"
         android:layout_below="@+id/relativeLayout3"
         android:layout_toEndOf="@+id/linearLayout2" />
 
