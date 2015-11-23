@@ -22,7 +22,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/abc_ic_ab_back_holo_light"
+                android:background="@drawable/ic_keyboard_arrow_left_black_48dp"
                 android:onClick="goBack" />
 
             <TextView
