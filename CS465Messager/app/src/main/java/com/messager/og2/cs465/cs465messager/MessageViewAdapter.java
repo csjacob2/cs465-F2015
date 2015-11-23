@@ -3,7 +3,6 @@ package com.messager.og2.cs465.cs465messager;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public class MessageViewAdapter extends ArrayAdapter<Conversation> {
         image.setImageResource(conversation.withPerson.image);
         name.setText(conversation.withPerson.name);
         timestamp.setText(conversation.timestamp);
-        text.setText(conversation.entries[conversation.entries.length - 1].chatText);
+        text.setText(conversation.entries.get(conversation.entries.size() - 1).chatText);
 
         final String color = "#ff69b4";
 

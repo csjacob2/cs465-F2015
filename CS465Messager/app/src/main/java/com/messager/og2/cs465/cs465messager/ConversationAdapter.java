@@ -49,7 +49,7 @@ public class ConversationAdapter extends ArrayAdapter<Conversation> {
         image.setImageResource(conversation.withPerson.image);
         name.setText(conversation.withPerson.name);
         timestamp.setText(conversation.timestamp);
-        text.setText(conversation.entries[conversation.entries.length - 1].chatText);
+        text.setText(conversation.entries.get(conversation.entries.size() - 1).chatText);
 
         final String color = "#ff69b4";
 

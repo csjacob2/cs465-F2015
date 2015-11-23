@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class ConversationActivity extends Activity {
+
+    Conversation conversation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +21,15 @@ public class ConversationActivity extends Activity {
 
         Intent intent = getIntent();
         int conversationIdx = intent.getIntExtra("CONVERSATION_IDX", 0);
-        Conversation conversation = MainActivity.conversations[conversationIdx];
+        conversation = MessageViewActivity.conversations[conversationIdx];
+
+        ConversationEntryAdapter adapter = new ConversationEntryAdapter(this, R.layout.conversation_entry_list_item, conversation.entries);
+        getMessageListView().setAdapter(adapter);
+
+        update();
+    }
+
+    public void update() {
         Person withPerson = conversation.withPerson;
 
         TextView urgent = (TextView)this.findViewById(R.id.urgent);
@@ -42,14 +53,29 @@ public class ConversationActivity extends Activity {
             timestamp.setTextColor(name.getCurrentTextColor());
         }
 
-        ConversationEntryAdapter adapter = new ConversationEntryAdapter(this, R.layout.conversation_entry_list_item, conversation.entries, withPerson);
-
-        ListView msgListView;
-        msgListView = (ListView)findViewById(R.id.conversation_entry_list);
-        msgListView.setAdapter(adapter);
+        ((ConversationEntryAdapter)getMessageListView().getAdapter()).notifyDataSetChanged();
     }
 
     public void goBack(View v) {
         onBackPressed();
+    }
+
+    public void send(View v) {
+        EditText editText = (EditText)this.findViewById(R.id.editText);
+        String text = editText.getText().toString();
+
+        conversation.entries.add(new ConversationEntry(MainActivity.me, text));
+        conversation.urgent = false;
+        conversation.timestamp = "Just now";
+
+        editText.setText("");
+        InputMethodManager inputMethodManager = (InputMethodManager)this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+
+        update();
+    }
+
+    private ListView getMessageListView() {
+        return (ListView)findViewById(R.id.conversation_entry_list);
     }
 }

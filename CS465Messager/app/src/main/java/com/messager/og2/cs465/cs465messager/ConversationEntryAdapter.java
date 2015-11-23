@@ -10,18 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
     private Context context;
     private int layoutResourceId;
-    private ConversationEntry[] conversationEntries;
-    private Person withPerson;
+    private List<ConversationEntry> conversationEntries;
 
-    public ConversationEntryAdapter(Context context, int resource, ConversationEntry[] conversationEntries, Person withPerson) {
+    public ConversationEntryAdapter(Context context, int resource, List<ConversationEntry> conversationEntries) {
         super(context, resource, conversationEntries);
         this.context = context;
         this.layoutResourceId = resource;
         this.conversationEntries = conversationEntries;
-        this.withPerson = withPerson;
     }
 
     @Override
@@ -41,9 +41,9 @@ public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
         text = (TextView)row.findViewById(R.id.text);
         right_image = (ImageView)row.findViewById(R.id.right_image);
 
-        ConversationEntry conversationEntry = conversationEntries[position];
+        ConversationEntry conversationEntry = conversationEntries.get(position);
 
-        if (conversationEntry.person == withPerson)
+        if (conversationEntry.person != MainActivity.me)
         {
             left_image.setVisibility(View.GONE);
 

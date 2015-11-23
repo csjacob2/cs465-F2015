@@ -10,38 +10,26 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends Activity {
     Spinner spinner;
     RelativeLayout mainLayout;
+
     final static String[] spinnerList = {
             "Family",
             "Friends",
             "Co-Workers",
             "+ Create Group..."
     };
-    static Person[] people = {
-            new Person("Me",  R.drawable.ppc1),
+
+    static Person me = new Person("Me",  R.drawable.ppc1);
+    static List<Person> contacts = new LinkedList<Person>(Arrays.asList(
             new Person("Bob", R.drawable.ppc2),
             new Person("Mom", R.drawable.ppc3)
-    };
-    static Conversation[] conversations = {
-            new Conversation(people[1],
-                    new ConversationEntry[] {
-                            new ConversationEntry(people[0], "Hey"),
-                            new ConversationEntry(people[1], "What's up?"),
-                            new ConversationEntry(people[0], "Nothing! Blah blah blah blah this is a very long line.")
-                    },
-                    true,
-                    "7 days ago"),
-            new Conversation(people[2],
-                    new ConversationEntry[] {
-                            new ConversationEntry(people[0], "How are you?"),
-                            new ConversationEntry(people[2], "Good, you?"),
-                            new ConversationEntry(people[0], "Fine")
-                    },
-                    false,
-                    "Just now")
-    };
+    ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

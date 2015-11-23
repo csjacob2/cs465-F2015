@@ -9,15 +9,33 @@ import android.widget.ListView;
 
 public class MessageViewActivity extends Activity {
 
+    static Conversation[] conversations = {
+            new Conversation(MainActivity.contacts.get(0),
+                    new ConversationEntry[] {
+                            new ConversationEntry(MainActivity.me, "Hey"),
+                            new ConversationEntry(MainActivity.contacts.get(0), "What's up?"),
+                            new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line.")
+                    },
+                    true,
+                    "7 days ago"),
+            new Conversation(MainActivity.contacts.get(1),
+                    new ConversationEntry[] {
+                            new ConversationEntry(MainActivity.me, "How are you?"),
+                            new ConversationEntry(MainActivity.contacts.get(1), "Good, you?"),
+                            new ConversationEntry(MainActivity.me, "Fine")
+                    },
+                    false,
+                    "Just now")
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_view);
 
-        MessageViewAdapter adapter = new MessageViewAdapter(this, R.layout.message_list_item, MainActivity.conversations);
+        MessageViewAdapter adapter = new MessageViewAdapter(this, R.layout.message_list_item, conversations);
 
-        ListView msgListView;
-        msgListView = (ListView)findViewById(R.id.message_list);
+        ListView msgListView = getMessageListView();
         msgListView.setAdapter(adapter);
 
         msgListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -30,7 +48,17 @@ public class MessageViewActivity extends Activity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MessageViewAdapter)getMessageListView().getAdapter()).notifyDataSetChanged();
+    }
+
     public void goBack(View v) {
         onBackPressed();
+    }
+
+    private ListView getMessageListView() {
+        return (ListView)findViewById(R.id.message_list);
     }
 };
