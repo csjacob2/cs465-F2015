@@ -1,14 +1,19 @@
 package com.messager.og2.cs465.cs465messager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -35,9 +40,44 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
         spinner = (Spinner)this.findViewById(R.id.group_spinner);
         spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
+
+        // There are a few hardcoded places in activity_main.xml where seeds may appear.
+        addSeed(R.id.bob, contacts.get(0));
+        addSeed(R.id.mom, contacts.get(1));
+    }
+
+    private void addSeed(int layoutId, final Person person)
+    {
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout layout = (LinearLayout)findViewById(layoutId);
+        View seed = inflater.inflate(R.layout.seed, null);
+
+        ((TextView)seed.findViewById(R.id.name)).setText(person.name);
+        ((ImageView)seed.findViewById(R.id.image)).setImageResource(person.image);
+
+        seed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ConversationActivity.class);
+                intent.putExtra("CONVERSATION_IDX", contacts.indexOf(person));
+                startActivity(intent);
+            }
+        });
+
+        // TODO
+        seed.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                System.out.println("Long clicked on " + person.name);
+                return true;
+            }
+        });
+
+        layout.addView(seed);
     }
 
     public void clickcheck(View v) {
