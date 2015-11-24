@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import java.util.Collections;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 public class NotificationFreqDialog extends DialogFragment {
     private Context context;
     private NumberPicker np;
-    private Map<String, Integer> reminder_freq = new HashMap<String, Integer>(10);
     private Contact contact;
     private final static String[] options = {
         "24 hrs",
@@ -36,20 +36,40 @@ public class NotificationFreqDialog extends DialogFragment {
         "3 weeks",
         "4 weeks"
     };
+    private static final Map<String, Integer> reminder_freq;        // Key is string in options array, value is reminder frequency in days
+    static {
+        Map<String, Integer> temp = new HashMap<String, Integer>();
+        temp.put(options[0], 1);
+        temp.put(options[1], 2);
+        temp.put(options[2], 3);
+        temp.put(options[3], 4);
+        temp.put(options[4], 5);
+        temp.put(options[5], 6);
+        temp.put(options[6], 7);
+        temp.put(options[7], 14);
+        temp.put(options[8], 21);
+        temp.put(options[9], 28);
+        reminder_freq = Collections.unmodifiableMap(temp);
+    }
+    private static final Map<Integer, Integer> options_lookup;            // Key is reminder frequency in days, value is integer index of options array for associated string
+    static {
+        Map<Integer, Integer> temp = new HashMap<Integer, Integer>();
+        temp.put(1, 0);
+        temp.put(2, 1);
+        temp.put(3, 2);
+        temp.put(4, 3);
+        temp.put(5, 4);
+        temp.put(6, 5);
+        temp.put(7, 6);
+        temp.put(14, 7);
+        temp.put(21, 8);
+        temp.put(28, 9);
+        options_lookup = Collections.unmodifiableMap(temp);
+    }
 
     public NotificationFreqDialog(Contact person) {
         super();
         this.contact = person;
-        reminder_freq.put(options[0], 1);
-        reminder_freq.put(options[1], 2);
-        reminder_freq.put(options[2], 3);
-        reminder_freq.put(options[3], 4);
-        reminder_freq.put(options[4], 5);
-        reminder_freq.put(options[5], 6);
-        reminder_freq.put(options[6], 7);
-        reminder_freq.put(options[7], 14);
-        reminder_freq.put(options[8], 21);
-        reminder_freq.put(options[9], 28);
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -65,6 +85,7 @@ public class NotificationFreqDialog extends DialogFragment {
         np.setMinValue(0);
         np.setWrapSelectorWheel(true);
         np.setDisplayedValues(options);
+        np.setValue(options_lookup.get(contact.getReminder_freq())); //Sets initial value to previously selected value
         //*******************************************************************************
         //******************************* Numpicker end *********************************
         //*******************************************************************************
