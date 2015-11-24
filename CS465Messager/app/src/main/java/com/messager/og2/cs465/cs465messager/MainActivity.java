@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
     Spinner spinner;
     RelativeLayout mainLayout;
+    private Contact mom = new Contact("Mom", R.drawable.ppc3), bob = new Contact("Bob", R.drawable.ppc2);
+
     final static String[] spinnerList = {
             "Family",
             "Friends",
@@ -26,6 +29,22 @@ public class MainActivity extends Activity {
         mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
         spinner = (Spinner)this.findViewById(R.id.group_spinner);
         spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
+
+        final Button mom_button = (Button) findViewById(R.id.mom_button);
+        mom_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NotificationFreqDialog nf = new NotificationFreqDialog(mom);
+                nf.show(getFragmentManager(), "notification_freq_dialog");
+            }
+        });
+
+        final Button bob_button = (Button) findViewById(R.id.bob_button);
+        bob_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NotificationFreqDialog nf = new NotificationFreqDialog(bob);
+                nf.show(getFragmentManager(), "notification_freq_dialog");
+            }
+        });
     }
 
     public void clickcheck(View v) {

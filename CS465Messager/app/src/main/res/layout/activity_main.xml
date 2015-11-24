@@ -27,6 +27,7 @@
         <Button
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:id="@+id/bob_button"
             android:background="@drawable/ppc2" />
         <ImageView
             android:layout_width="48dp"
@@ -50,6 +51,7 @@
         <Button
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:id="@+id/mom_button"
             android:background="@drawable/ppc3" />
         <ImageView
             android:layout_width="48dp"
