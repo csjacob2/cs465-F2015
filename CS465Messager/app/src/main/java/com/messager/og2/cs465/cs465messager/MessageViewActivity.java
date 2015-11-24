@@ -9,17 +9,18 @@ import android.widget.ListView;
 
 public class MessageViewActivity extends Activity {
 
+    // The list of all conversations that the user has ongoing.
     static Conversation[] conversations = {
-            new Conversation(MainActivity.contacts.get(0),
-                    new ConversationEntry[] {
+            new Conversation(MainActivity.contacts.get(0), // Who the conversation is with.
+                    new ConversationEntry[] {              // Individual chat entries.
                             new ConversationEntry(MainActivity.me, "Hey"),
                             new ConversationEntry(MainActivity.contacts.get(0), "What's up?"),
                             new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line.")
                     },
                     true,
                     "7 days ago"),
-            new Conversation(MainActivity.contacts.get(1),
-                    new ConversationEntry[] {
+            new Conversation(MainActivity.contacts.get(1), // Who the conversation is with.
+                    new ConversationEntry[] {              // Individual chat entries.
                             new ConversationEntry(MainActivity.me, "How are you?"),
                             new ConversationEntry(MainActivity.contacts.get(1), "Good, you?"),
                             new ConversationEntry(MainActivity.me, "Fine")
@@ -38,6 +39,8 @@ public class MessageViewActivity extends Activity {
         ListView msgListView = getMessageListView();
         msgListView.setAdapter(adapter);
 
+        // Handle the user clicking one of the conversations. Opens the ConversationActivity with
+        // the selected conversation.
         msgListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,13 +54,18 @@ public class MessageViewActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+
+        // When the activity resumes, refresh the conversation list in case the user chatted
+        // with one of their contacts.
         ((MessageViewAdapter)getMessageListView().getAdapter()).notifyDataSetChanged();
     }
 
+    // Handles the user clicking the back button in the top bar.
     public void goBack(View v) {
         onBackPressed();
     }
 
+    // Convenience method for getting the list of conversations.
     private ListView getMessageListView() {
         return (ListView)findViewById(R.id.message_list);
     }

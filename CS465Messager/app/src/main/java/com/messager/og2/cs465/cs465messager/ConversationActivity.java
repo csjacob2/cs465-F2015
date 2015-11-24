@@ -29,6 +29,8 @@ public class ConversationActivity extends Activity {
         update();
     }
 
+    // Updates the widgets on the screen. This will reflect any changes that have been made to the
+    // conversation data. I.e., call this after the user sends a message.
     public void update() {
         Person withPerson = conversation.withPerson;
 
@@ -53,13 +55,17 @@ public class ConversationActivity extends Activity {
             timestamp.setTextColor(name.getCurrentTextColor());
         }
 
+        // Causes the conversation list view to refresh itself.
         ((ConversationEntryAdapter)getMessageListView().getAdapter()).notifyDataSetChanged();
     }
 
+    // Handles the user pressing the back button at the top left of the screen.
     public void goBack(View v) {
         onBackPressed();
     }
 
+    // "Sends" the message that the user has typed to the conversation. Make sure to update the
+    // conversation to no longer be urgent and show the timestamp as "Just now".
     public void send(View v) {
         EditText editText = (EditText)this.findViewById(R.id.editText);
         String text = editText.getText().toString();
@@ -68,6 +74,7 @@ public class ConversationActivity extends Activity {
         conversation.urgent = false;
         conversation.timestamp = "Just now";
 
+        // Clear the text entry and close the keyboard.
         editText.setText("");
         InputMethodManager inputMethodManager = (InputMethodManager)this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
@@ -75,6 +82,7 @@ public class ConversationActivity extends Activity {
         update();
     }
 
+    // Convenience method for getting the conversation list view.
     private ListView getMessageListView() {
         return (ListView)findViewById(R.id.conversation_entry_list);
     }

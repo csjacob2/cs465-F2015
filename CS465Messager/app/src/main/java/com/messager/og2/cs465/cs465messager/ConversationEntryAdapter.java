@@ -43,6 +43,9 @@ public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
 
         ConversationEntry conversationEntry = conversationEntries.get(position);
 
+        // If the person who sent this chat message is me, then show my image on the left hand side
+        // of the message. If it was the person I'm talking to, then show their image on the right
+        // side. Hide the other one so it doesn't show nor take up space.
         if (conversationEntry.person != MainActivity.me)
         {
             left_image.setVisibility(View.GONE);

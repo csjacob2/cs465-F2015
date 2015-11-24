@@ -45,11 +45,13 @@ public class MainActivity extends Activity {
         spinner = (Spinner)this.findViewById(R.id.group_spinner);
         spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
 
-        // There are a few hardcoded places in activity_main.xml where seeds may appear.
+        // Add the contacts/seeds to the main view in predefined locations.
         addSeed(R.id.bob, contacts.get(0));
         addSeed(R.id.mom, contacts.get(1));
     }
 
+    // Instantiates a seed view and adds it to the main screen. layoutId is the ID of some
+    // layout on the main screen that you want to add the seed to.
     private void addSeed(int layoutId, final Person person)
     {
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,6 +61,7 @@ public class MainActivity extends Activity {
         ((TextView)seed.findViewById(R.id.name)).setText(person.name);
         ((ImageView)seed.findViewById(R.id.image)).setImageResource(person.image);
 
+        // When the user clicks on a contact/seed, open the conversation with the contact.
         seed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +88,7 @@ public class MainActivity extends Activity {
         System.out.println("###############h:" + mainLayout.getHeight() + "|w:" + mainLayout.getWidth());
     }
 
+    // Handles the user clicking the button in the top bar to open the MessageViewActivity.
     public void openMessageView(View v) {
         Intent myIntent = new Intent(MainActivity.this, MessageViewActivity.class);
         this.startActivity(myIntent);
