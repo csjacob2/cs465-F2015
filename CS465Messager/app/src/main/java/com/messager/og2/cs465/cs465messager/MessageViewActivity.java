@@ -11,22 +11,22 @@ public class MessageViewActivity extends Activity {
 
     // The list of all conversations that the user has ongoing.
     static Conversation[] conversations = {
-            new Conversation(MainActivity.contacts.get(0), // Who the conversation is with.
+            new Conversation(MainActivity.contacts.get(0), // Who the conversation is with. Bob, in this case.
                     new ConversationEntry[] {              // Individual chat entries.
                             new ConversationEntry(MainActivity.me, "Hey"),
                             new ConversationEntry(MainActivity.contacts.get(0), "What's up?"),
                             new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line.")
                     },
-                    true,
-                    "7 days ago"),
-            new Conversation(MainActivity.contacts.get(1), // Who the conversation is with.
+                    true, // Urgent flag.
+                    7),   // Days since last contacted.
+            new Conversation(MainActivity.contacts.get(1), // Who the conversation is with. Mom, in this case.
                     new ConversationEntry[] {              // Individual chat entries.
                             new ConversationEntry(MainActivity.me, "How are you?"),
                             new ConversationEntry(MainActivity.contacts.get(1), "Good, you?"),
                             new ConversationEntry(MainActivity.me, "Fine")
                     },
-                    false,
-                    "Just now")
+                    false, // Urgent flag.
+                    0)     // Days since last contacted.
     };
 
     @Override

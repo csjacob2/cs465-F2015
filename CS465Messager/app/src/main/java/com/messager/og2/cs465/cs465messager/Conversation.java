@@ -17,14 +17,21 @@ public class Conversation {
     // exclamation point to be shown next to the conversation in the relevant screens.
     public boolean urgent;
 
-    // A string to display as the timestamp. This isn't a real timestamp, just hardcoded strings.
-    // E.g., "Just now", "7 days ago".
-    public String timestamp;
+    // The number of days since the last message in this conversation.
+    public int timestamp;
 
-    public Conversation(Person withPerson, ConversationEntry[] entries, boolean urgent, String timestamp) {
+    public Conversation(Person withPerson, ConversationEntry[] entries, boolean urgent, int timestamp) {
         this.withPerson = withPerson;
         this.entries = new LinkedList<ConversationEntry>(Arrays.asList(entries));
         this.urgent = urgent;
         this.timestamp = timestamp;
+    }
+
+    public String timestampString() {
+        if (timestamp == 0) {
+            return "Just now";
+        } else {
+            return Integer.toString(timestamp) + " days ago";
+        }
     }
 }

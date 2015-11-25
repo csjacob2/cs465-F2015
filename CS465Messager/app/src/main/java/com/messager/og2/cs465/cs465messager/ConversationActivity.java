@@ -40,7 +40,7 @@ public class ConversationActivity extends Activity {
 
         urgent.setText(conversation.urgent ? "!" : "");
         name.setText(withPerson.name);
-        timestamp.setText(conversation.timestamp);
+        timestamp.setText(conversation.timestampString());
 
         final String color = "#ff69b4";
 
@@ -72,7 +72,7 @@ public class ConversationActivity extends Activity {
 
         conversation.entries.add(new ConversationEntry(MainActivity.me, text));
         conversation.urgent = false;
-        conversation.timestamp = "Just now";
+        conversation.timestamp = 0;
 
         // Clear the text entry and close the keyboard.
         editText.setText("");

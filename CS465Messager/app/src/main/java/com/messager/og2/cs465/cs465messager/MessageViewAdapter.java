@@ -48,7 +48,7 @@ public class MessageViewAdapter extends ArrayAdapter<Conversation> {
         urgent.setText(conversation.urgent ? "!" : "");
         image.setImageResource(conversation.withPerson.image);
         name.setText(conversation.withPerson.name);
-        timestamp.setText(conversation.timestamp);
+        timestamp.setText(conversation.timestampString());
         text.setText(conversation.entries.get(conversation.entries.size() - 1).chatText);
 
         final String color = "#ff69b4";

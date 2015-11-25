@@ -15,10 +15,10 @@
     <LinearLayout
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginEnd="45dp"
-        android:id="@+id/bob"
+        android:layout_marginEnd="35dp"
+        android:id="@+id/diag_far"
         android:orientation="vertical"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="45dp"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentEnd="true">
 
@@ -27,12 +27,23 @@
     <LinearLayout
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:id="@+id/mom"
+        android:id="@+id/diag_mid"
         android:orientation="vertical"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true">
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/diag_far"
+        android:layout_toStartOf="@+id/diag_far">
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/diag_near"
+        android:orientation="vertical"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/diag_mid"
+        android:layout_toEndOf="@+id/button" />
 
     <LinearLayout
         android:layout_alignParentTop="true"
@@ -65,23 +76,62 @@
             android:id="@+id/add" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@+id/bob"
-        android:layout_marginTop="59dp"
-        android:id="@+id/linearLayout2"></LinearLayout>
-
     <Button
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/ppc1"
         android:id="@+id/button"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="42dp"
-        android:layout_below="@+id/mom"
-        android:layout_toEndOf="@+id/linearLayout2" />
+        android:layout_marginStart="41dp"
+        android:layout_below="@+id/diag_near"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/top_near"
+        android:orientation="vertical"
+        android:layout_below="@+id/diag_mid"
+        android:layout_alignEnd="@+id/button" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/top_mid"
+        android:orientation="vertical"
+        android:layout_below="@+id/diag_far"
+        android:layout_alignStart="@+id/top_near" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/top_far"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/top_mid" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/bottom_near"
+        android:orientation="vertical"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignStart="@+id/diag_near" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/bottom_mid"
+        android:orientation="vertical"
+        android:layout_alignTop="@+id/bottom_near"
+        android:layout_toStartOf="@+id/diag_far" />
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/bottom_far"
+        android:orientation="vertical"
+        android:layout_alignTop="@+id/bottom_mid"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

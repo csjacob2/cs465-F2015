@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     Spinner spinner;
     RelativeLayout mainLayout;
 
-
     static Person me = new Person("Me",  R.drawable.ppc1);
     static List<Person> contacts = new LinkedList<Person>(Arrays.asList(
             new Person("Bob", R.drawable.ppc2),
@@ -42,8 +41,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, Constants.spinnerList));
 
         // Add the contacts/seeds to the main view in predefined locations.
-        addSeed(R.id.bob, contacts.get(0));
-        addSeed(R.id.mom, contacts.get(1));
+        addSeed(R.id.diag_far, contacts.get(0));    // Bob
+        addSeed(R.id.bottom_near, contacts.get(1)); // Mom
     }
 
     // Instantiates a seed view and adds it to the main screen. layoutId is the ID of some
@@ -67,7 +66,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             }
         });
 
-        // TODO
+        // When the user long-clicks on a contact/seed, open the notification configuration dialog.
         seed.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -78,6 +77,18 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         });
 
         layout.addView(seed);
+        person.seedLocation = layoutId;
+    }
+
+    // Instantiates a seed view and adds it to the main screen. layoutId is the ID of some
+    // layout on the main screen that you want to add the seed to.
+    private void moveSeed(int newLayoutId, final Person person)
+    {
+        LinearLayout layout = (LinearLayout)findViewById(person.seedLocation);
+
+        layout.removeAllViews();
+
+        addSeed(newLayoutId, person);
     }
 
     public void clickcheck(View v) {
@@ -126,5 +137,17 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // If the user has sent a message to Bob, move him near the dandelion.
+        if (MessageViewActivity.conversations[0].timestamp == 0) {
+            moveSeed(R.id.diag_near, contacts.get(0));
+        }
+
+        // TODO: Move people around for other reasons?
     }
 }
