@@ -75,7 +75,8 @@ public class MainActivity extends Activity {
         seed.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                System.out.println("Long clicked on " + person.name);
+                NotificationFreqDialog nf = new NotificationFreqDialog(person);
+                nf.show(getFragmentManager(), "notification_freq_dialog");
                 return true;
             }
         });
