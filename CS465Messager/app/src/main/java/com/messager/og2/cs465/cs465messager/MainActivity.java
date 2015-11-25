@@ -8,27 +8,23 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;
     RelativeLayout mainLayout;
 
-    final static String[] spinnerList = {
-            "Family",
-            "Friends",
-            "Co-Workers",
-            "+ Create Group..."
-    };
 
     static Person me = new Person("Me",  R.drawable.ppc1);
     static List<Person> contacts = new LinkedList<Person>(Arrays.asList(
@@ -43,7 +39,7 @@ public class MainActivity extends Activity {
 
         mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
         spinner = (Spinner)this.findViewById(R.id.group_spinner);
-        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinnerList));
+        spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, Constants.spinnerList));
 
         // Add the contacts/seeds to the main view in predefined locations.
         addSeed(R.id.bob, contacts.get(0));
@@ -115,5 +111,20 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(position) {
+            case 3:
+                Toast.makeText(this, "clicked new group", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

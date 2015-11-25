@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ConversationActivity"
-    android:padding="12dp"
-    android:orientation="horizontal">
+    android:padding="12dp" >
 
     <!-- Left image -->
     <ImageView
         android:id="@+id/left_image"
+        android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -18,17 +18,19 @@
     <!-- Conversation entry text -->
     <TextView
         android:id="@+id/text"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="12dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="72dp"
+        android:paddingRight="72dp"
         />
 
     <!-- Right image -->
     <ImageView
         android:id="@+id/right_image"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="contactProfileClick"
         />
 
-</LinearLayout>
+</RelativeLayout>
