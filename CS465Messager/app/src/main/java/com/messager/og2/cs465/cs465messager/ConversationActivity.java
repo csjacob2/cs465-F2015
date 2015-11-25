@@ -86,4 +86,8 @@ public class ConversationActivity extends Activity {
     private ListView getMessageListView() {
         return (ListView)findViewById(R.id.conversation_entry_list);
     }
+
+    public void contactProfileClick(View v) {
+
+    }
 }
