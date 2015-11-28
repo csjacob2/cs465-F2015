@@ -105,7 +105,6 @@ public class ConversationActivity extends Activity {
         intent.putExtra("contactPhoneNumber", conversation.withPerson.phoneNumber);
         intent.putExtra("contactProfileImage", conversation.withPerson.image);
         intent.putExtra("contactProfileImageBitmap", conversation.withPerson.profilePic);
-
         startActivityForResult(intent, this.CONTACT_UPDATE_CODE);
     }
 
