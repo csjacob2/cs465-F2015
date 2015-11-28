@@ -2,17 +2,28 @@ package com.messager.og2.cs465.cs465messager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 public class ConversationActivity extends Activity {
 
     Conversation conversation;
+
+    private final int CONTACT_UPDATE_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +99,43 @@ public class ConversationActivity extends Activity {
     }
 
     public void contactProfileClick(View v) {
+        Intent intent = new Intent(this, ContactSettingsActivity.class);
+        intent.putExtra("contactName", conversation.withPerson.name);
+        intent.putExtra("contactEmail", conversation.withPerson.email);
+        intent.putExtra("contactPhoneNumber", conversation.withPerson.phoneNumber);
+        intent.putExtra("contactProfileImage", conversation.withPerson.image);
+        intent.putExtra("contactProfileImageBitmap", conversation.withPerson.profilePic);
 
+        startActivityForResult(intent, this.CONTACT_UPDATE_CODE);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode)
+        {
+            case CONTACT_UPDATE_CODE:
+                if (resultCode == RESULT_OK)
+                {
+                    Log.d("$$$$-", "hi");
+                    conversation.withPerson.name = data.getStringExtra("contactName");
+                    conversation.withPerson.phoneNumber = data.getStringExtra("contactPhoneNumber");
+                    conversation.withPerson.email = data.getStringExtra("contactEmail");
+                    conversation.withPerson.profilePic = data.getParcelableExtra("contactProfileImageBitmap");
+
+                    TextView name = (TextView)this.findViewById(R.id.name);
+                    name.setText(conversation.withPerson.name);
+
+                    ImageView profilePic = (ImageView) this.findViewById(R.id.right_image);
+                    profilePic.setImageBitmap(conversation.withPerson.profilePic);
+                    profilePic.invalidate();
+
+                    ListView lv = (ListView)findViewById(R.id.conversation_entry_list);
+                    ((ConversationEntryAdapter) lv.getAdapter()).notifyDataSetChanged();
+                }
+                break;
+        }
+    }
+
 }

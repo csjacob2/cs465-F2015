@@ -3,6 +3,7 @@ package com.messager.og2.cs465.cs465messager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,16 +27,17 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     RelativeLayout mainLayout;
 
     static Person me = new Person("Me",  R.drawable.ppc1);
-    static List<Person> contacts = new LinkedList<Person>(Arrays.asList(
-            new Person("Bob", R.drawable.ppc2),
-            new Person("Mom", R.drawable.ppc3)
-    ));
+    static List<Person> contacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        contacts = new LinkedList<Person>(Arrays.asList(
+                new Person("Bob", R.drawable.ppc2, BitmapFactory.decodeResource(this.getResources(), R.drawable.ppc2)),
+                new Person("Mom", R.drawable.ppc3, BitmapFactory.decodeResource(this.getResources(), R.drawable.ppc3))
+        ));
         mainLayout = (RelativeLayout)this.findViewById(R.id.content_layout);
         spinner = (Spinner)this.findViewById(R.id.group_spinner);
         spinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, Constants.spinnerList));
@@ -54,7 +56,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         View seed = inflater.inflate(R.layout.seed, null);
 
         ((TextView)seed.findViewById(R.id.name)).setText(person.name);
-        ((ImageView)seed.findViewById(R.id.image)).setImageResource(person.image);
+        ((ImageView)seed.findViewById(R.id.image)).setImageBitmap(person.profilePic);
 
         // When the user clicks on a contact/seed, open the conversation with the contact.
         seed.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +87,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     private void moveSeed(int newLayoutId, final Person person)
     {
         LinearLayout layout = (LinearLayout)findViewById(person.seedLocation);
+
 
         layout.removeAllViews();
 
