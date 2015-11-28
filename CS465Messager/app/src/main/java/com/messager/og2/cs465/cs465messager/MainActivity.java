@@ -150,6 +150,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         if (MessageViewActivity.conversations[0].timestamp == 0) {
             moveSeed(R.id.diag_near, contacts.get(0));
         }
+        else {
+            moveSeed(R.id.diag_far, contacts.get(0));
+        }
 
         // TODO: Move people around for other reasons?
     }

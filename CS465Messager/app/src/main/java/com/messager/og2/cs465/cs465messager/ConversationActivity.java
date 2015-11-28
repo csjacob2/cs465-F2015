@@ -132,6 +132,7 @@ public class ConversationActivity extends Activity {
 
                     ListView lv = (ListView)findViewById(R.id.conversation_entry_list);
                     ((ConversationEntryAdapter) lv.getAdapter()).notifyDataSetChanged();
+                    update();
                 }
                 break;
         }
