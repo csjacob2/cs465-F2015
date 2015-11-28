@@ -187,53 +187,53 @@
                         android:id="@+id/action_image_1"
                         />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    >
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingTop="64dp"
-                        android:hint="enter text here"
-                        android:id="@+id/action_text_2"
-                        />
-                    <ImageView
-                        android:layout_width="128dp"
-                        android:layout_height="128dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/def02"
-                        android:onClick="changeProfilePic"
-                        android:id="@+id/action_image_2"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    >
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="enter text here"
-                        android:paddingTop="64dp"
-                        android:layout_gravity="center"
-                        android:id="@+id/action_text_3"
-                        />
-                    <ImageView
-                        android:layout_width="128dp"
-                        android:layout_height="128dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/def06"
-                        android:onClick="changeProfilePic"
-                        android:id="@+id/action_image_3"
-                        />
-                </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_gravity="center"-->
+                    <!-->-->
+                    <!--<EditText-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:paddingTop="64dp"-->
+                        <!--android:hint="enter text here"-->
+                        <!--android:id="@+id/action_text_2"-->
+                        <!--/>-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="128dp"-->
+                        <!--android:layout_height="128dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:src="@drawable/def02"-->
+                        <!--android:onClick="changeProfilePic"-->
+                        <!--android:id="@+id/action_image_2"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_gravity="center"-->
+                    <!-->-->
+                    <!--<EditText-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:hint="enter text here"-->
+                        <!--android:paddingTop="64dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:id="@+id/action_text_3"-->
+                        <!--/>-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="128dp"-->
+                        <!--android:layout_height="128dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:src="@drawable/def06"-->
+                        <!--android:onClick="changeProfilePic"-->
+                        <!--android:id="@+id/action_image_3"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 

@@ -51,11 +51,14 @@ public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
         if (conversationEntry.person != MainActivity.me)
         {
             left_image.setVisibility(View.GONE);
-            Set<String> keys = conversationEntry.person.contactPicMapping.keySet();
             Bitmap bm = conversationEntry.person.profilePic;
-            for (String key : keys) {
-                if (conversationEntry.chatText.contains(key)) {
-                    bm = conversationEntry.person.contactPicMapping.get(key);
+            if (conversationEntry.person != null && conversationEntry.person.contactPicMapping != null) {
+                Set<String> keys = conversationEntry.person.contactPicMapping.keySet();
+                for (String key : keys) {
+                    if (conversationEntry.chatText.contains(key)) {
+                        bm = conversationEntry.person.contactPicMapping.get(key);
+                        break;
+                    }
                 }
             }
             right_image.setImageBitmap(bm);

@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class ConversationActivity extends Activity {
 
@@ -105,6 +107,7 @@ public class ConversationActivity extends Activity {
         intent.putExtra("contactPhoneNumber", conversation.withPerson.phoneNumber);
         intent.putExtra("contactProfileImage", conversation.withPerson.image);
         intent.putExtra("contactProfileImageBitmap", conversation.withPerson.profilePic);
+        intent.putExtra("contactMapping", conversation.withPerson.contactPicMapping);
         startActivityForResult(intent, this.CONTACT_UPDATE_CODE);
     }
 
@@ -122,17 +125,16 @@ public class ConversationActivity extends Activity {
                     conversation.withPerson.phoneNumber = data.getStringExtra("contactPhoneNumber");
                     conversation.withPerson.email = data.getStringExtra("contactEmail");
                     conversation.withPerson.profilePic = data.getParcelableExtra("contactProfileImageBitmap");
+                    conversation.withPerson.contactPicMapping = (HashMap<String, Bitmap>)data.getSerializableExtra("contactMapping");
 
                     TextView name = (TextView)this.findViewById(R.id.name);
                     name.setText(conversation.withPerson.name);
 
                     ImageView profilePic = (ImageView) this.findViewById(R.id.right_image);
                     profilePic.setImageBitmap(conversation.withPerson.profilePic);
-                    profilePic.invalidate();
 
                     ListView lv = (ListView)findViewById(R.id.conversation_entry_list);
                     ((ConversationEntryAdapter) lv.getAdapter()).notifyDataSetChanged();
-                    update();
                 }
                 break;
         }

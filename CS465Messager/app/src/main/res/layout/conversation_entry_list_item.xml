@@ -11,8 +11,8 @@
     <ImageView
         android:id="@+id/left_image"
         android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         />
 
     <!-- Conversation entry text -->
@@ -28,8 +28,8 @@
     <ImageView
         android:id="@+id/right_image"
         android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:onClick="contactProfileClick"
         />
 

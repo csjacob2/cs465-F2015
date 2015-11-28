@@ -2,7 +2,7 @@ package com.messager.og2.cs465.cs465messager;
 
 import android.graphics.Bitmap;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Person {
@@ -12,7 +12,7 @@ public class Person {
     public int reminderFreq = 7;
     public int seedLocation = -1;
     public String phoneNumber;
-    public Hashtable<String, Bitmap> contactPicMapping = new Hashtable<String, Bitmap>();
+    public HashMap<String, Bitmap> contactPicMapping = new HashMap<String, Bitmap>();
     public String email;
     private Random rand = new Random();
     private String[] emailPartOne = {
