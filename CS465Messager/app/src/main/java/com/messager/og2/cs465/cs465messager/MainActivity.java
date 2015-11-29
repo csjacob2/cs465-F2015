@@ -3,21 +3,28 @@ package com.messager.og2.cs465.cs465messager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,8 +33,10 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     Spinner spinner;
     RelativeLayout mainLayout;
 
+    private final int CONTACT_PICKER_ACTION = 1001;
+
     static Person me = new Person("Me",  R.drawable.ppc1);
-    static List<Person> contacts;
+    static List<Person> contacts = new LinkedList<Person>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,4 +165,31 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
         // TODO: Move people around for other reasons?
     }
+
+    public void getContactsClicked(View v) {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, CONTACT_PICKER_ACTION);
+    }
+
+    public void getSettingsClicked(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_main, popup.getMenu());
+        popup.show();    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode)
+        {
+            case CONTACT_PICKER_ACTION:
+                if (resultCode == RESULT_OK)
+                {
+
+                }
+                break;
+        }
+    }
+
 }

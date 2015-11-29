@@ -74,31 +74,31 @@ public class ContactSettingsActivity extends Activity {
         person.profilePic = (Bitmap) getIntent().getParcelableExtra("contactProfileImageBitmap");
         person.contactPicMapping = (HashMap<String, Bitmap>)getIntent().getSerializableExtra("contactMapping");
 
-        if (person.contactPicMapping.size() > 0) {
+        if (person.contactPicMapping!= null && person.contactPicMapping.size() > 0) {
             Set<String> keySet = person.contactPicMapping.keySet();
             String[] keys = keySet.toArray(new String[keySet.size()]);
             EditText actionText1 = (EditText)this.findViewById(R.id.action_text_1);
-//            EditText actionText2 = (EditText)this.findViewById(R.id.action_text_2);
-//            EditText actionText3 = (EditText)this.findViewById(R.id.action_text_3);
+            EditText actionText2 = (EditText)this.findViewById(R.id.action_text_2);
+            EditText actionText3 = (EditText)this.findViewById(R.id.action_text_3);
 
             ImageView actionImage1 = (ImageView)this.findViewById(R.id.action_image_1);
-//            ImageView actionImage2 = (ImageView)this.findViewById(R.id.action_image_2);
-//            ImageView actionImage3 = (ImageView)this.findViewById(R.id.action_image_3);
+            ImageView actionImage2 = (ImageView)this.findViewById(R.id.action_image_2);
+            ImageView actionImage3 = (ImageView)this.findViewById(R.id.action_image_3);
 
             if (person.contactPicMapping.size() == 1) {
                 actionText1.setText(keys[0]);
                 actionImage1.setImageBitmap(person.contactPicMapping.get(keys[0]));
             }
 
-//            if (person.contactPicMapping.size() == 2) {
-//                actionText2.setText(keys[1]);
-//                actionImage2.setImageBitmap(person.contactPicMapping.get(keys[1]));
-//            }
-//
-//            if (person.contactPicMapping.size() == 3) {
-//                actionText3.setText(keys[2]);
-//                actionImage3.setImageBitmap(person.contactPicMapping.get(keys[2]));
-//            }
+            if (person.contactPicMapping.size() == 2) {
+                actionText2.setText(keys[1]);
+                actionImage2.setImageBitmap(person.contactPicMapping.get(keys[1]));
+            }
+
+            if (person.contactPicMapping.size() == 3) {
+                actionText3.setText(keys[2]);
+                actionImage3.setImageBitmap(person.contactPicMapping.get(keys[2]));
+            }
         }
 
         //setup contact to be shown
@@ -192,24 +192,24 @@ public class ContactSettingsActivity extends Activity {
         person.contactPicMapping.clear();
 
         EditText actionText1 = (EditText)this.findViewById(R.id.action_text_1);
-//        EditText actionText2 = (EditText)this.findViewById(R.id.action_text_2);
-//        EditText actionText3 = (EditText)this.findViewById(R.id.action_text_3);
+        EditText actionText2 = (EditText)this.findViewById(R.id.action_text_2);
+        EditText actionText3 = (EditText)this.findViewById(R.id.action_text_3);
 
         ImageView actionImage1 = (ImageView)this.findViewById(R.id.action_image_1);
-//        ImageView actionImage2 = (ImageView)this.findViewById(R.id.action_image_2);
-//        ImageView actionImage3 = (ImageView)this.findViewById(R.id.action_image_3);
+        ImageView actionImage2 = (ImageView)this.findViewById(R.id.action_image_2);
+        ImageView actionImage3 = (ImageView)this.findViewById(R.id.action_image_3);
 
         if (!actionText1.getText().toString().matches("")) {
             person.contactPicMapping.put(actionText1.getText().toString(), ((BitmapDrawable)actionImage1.getDrawable()).getBitmap());
         }
 
-//        if (!actionText2.getText().toString().matches("")) {
-//            person.contactPicMapping.put(actionText2.getText().toString(), ((BitmapDrawable)actionImage2.getDrawable()).getBitmap());
-//        }
-//
-//        if (!actionText3.getText().toString().matches("")) {
-//            person.contactPicMapping.put(actionText3.getText().toString(), ((BitmapDrawable)actionImage3.getDrawable()).getBitmap());
-//        }
+        if (!actionText2.getText().toString().matches("")) {
+            person.contactPicMapping.put(actionText2.getText().toString(), ((BitmapDrawable)actionImage2.getDrawable()).getBitmap());
+        }
+
+        if (!actionText3.getText().toString().matches("")) {
+            person.contactPicMapping.put(actionText3.getText().toString(), ((BitmapDrawable)actionImage3.getDrawable()).getBitmap());
+        }
 
         this.toggleViews(true);
     }

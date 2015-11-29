@@ -34,11 +34,12 @@ public class ConversationActivity extends Activity {
 
         Intent intent = getIntent();
         int conversationIdx = intent.getIntExtra("CONVERSATION_IDX", 0);
-        conversation = MessageViewActivity.conversations[conversationIdx];
+        if (MessageViewActivity.conversations != null) {
+            conversation = MessageViewActivity.conversations[conversationIdx];
 
-        ConversationEntryAdapter adapter = new ConversationEntryAdapter(this, R.layout.conversation_entry_list_item, conversation.entries);
-        getMessageListView().setAdapter(adapter);
-
+            ConversationEntryAdapter adapter = new ConversationEntryAdapter(this, R.layout.conversation_entry_list_item, conversation.entries);
+            getMessageListView().setAdapter(adapter);
+        }
         update();
     }
 
@@ -90,7 +91,8 @@ public class ConversationActivity extends Activity {
         // Clear the text entry and close the keyboard.
         editText.setText("");
         InputMethodManager inputMethodManager = (InputMethodManager)this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        if (inputMethodManager != null)
+            inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
 
         update();
     }
