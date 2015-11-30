@@ -107,6 +107,13 @@
                 android:text="Set Chat Pic Mapping"
                 android:onClick="viewChatPicMappingClicked"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Notification Frequency"
+                android:onClick="frequencySettingsClicked"
+                />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

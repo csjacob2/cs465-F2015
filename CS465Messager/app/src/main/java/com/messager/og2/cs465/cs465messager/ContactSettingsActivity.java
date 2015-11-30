@@ -85,12 +85,12 @@ public class ContactSettingsActivity extends Activity {
             ImageView actionImage2 = (ImageView)this.findViewById(R.id.action_image_2);
             ImageView actionImage3 = (ImageView)this.findViewById(R.id.action_image_3);
 
-            if (person.contactPicMapping.size() == 1) {
+            if (person.contactPicMapping.size() >= 1) {
                 actionText1.setText(keys[0]);
                 actionImage1.setImageBitmap(person.contactPicMapping.get(keys[0]));
             }
 
-            if (person.contactPicMapping.size() == 2) {
+            if (person.contactPicMapping.size() >= 2) {
                 actionText2.setText(keys[1]);
                 actionImage2.setImageBitmap(person.contactPicMapping.get(keys[1]));
             }
@@ -177,6 +177,11 @@ public class ContactSettingsActivity extends Activity {
 
     public void viewChatPicMappingClicked(View v) {
         this.toggleViews(false);
+    }
+
+    public void frequencySettingsClicked(View v) {
+        NotificationFreqDialog nf = new NotificationFreqDialog(person);
+        nf.show(getFragmentManager(), "notification_freq_dialog");
     }
 
     public void saveContactSettingsClicked(View v) {

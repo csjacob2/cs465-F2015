@@ -1,7 +1,7 @@
 <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"-->
     <!--android:name="com.messager.og2.cs465.cs465messager.MainActivityFragment"-->
-    <!--tools:layout="@layout/fragment_main" android:layout_width="match_parent"-->
+    <!--tools:app_settings_layout="@app_settings_layout/fragment_main" android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent" />-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -80,15 +80,17 @@
             />
     </LinearLayout>
 
-    <Button
+    <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/ppc1"
+        android:src="@drawable/ppc1"
         android:id="@+id/button"
         android:layout_marginStart="41dp"
         android:layout_below="@+id/diag_near"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="33dp"
+        android:onClick="userProfilePicClicked"
+        />
 
     <LinearLayout
         android:layout_width="64dp"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -34,9 +36,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     RelativeLayout mainLayout;
 
     private final int CONTACT_PICKER_ACTION = 1001;
+    private final int USER_PROFILE_PICKER_ACTION = 1002;
 
     static Person me = new Person("Me",  R.drawable.ppc1);
     static List<Person> contacts = new LinkedList<Person>();
+    ImageView iv;
+    AppSettingsDialog appSettingsDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         // Add the contacts/seeds to the main view in predefined locations.
         addSeed(R.id.diag_far, contacts.get(0));    // Bob
         addSeed(R.id.bottom_near, contacts.get(1)); // Mom
+
+        if (Constants.appSettings.profilePicture == null) {
+            Constants.appSettings.profilePicture = BitmapFactory.decodeResource(this.getResources(), R.drawable.ppc1);
+        }
+
+        ImageView iv = (ImageView)this.findViewById(R.id.button);
+        iv.setImageBitmap(Constants.appSettings.profilePicture);
     }
 
     // Instantiates a seed view and adds it to the main screen. layoutId is the ID of some
@@ -92,7 +104,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     }
 
     // Instantiates a seed view and adds it to the main screen. layoutId is the ID of some
-    // layout on the main screen that you want to add the seed to.
+    // app_settings_layout on the main screen that you want to add the seed to.
     private void moveSeed(int newLayoutId, final Person person)
     {
         LinearLayout layout = (LinearLayout)findViewById(person.seedLocation);
@@ -163,6 +175,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             moveSeed(R.id.diag_far, contacts.get(0));
         }
 
+        if (Constants.appSettings.profilePicture == null) {
+            Constants.appSettings.profilePicture = BitmapFactory.decodeResource(this.getResources(), R.drawable.ppc1);
+        }
+
+        ImageView iv = (ImageView)this.findViewById(R.id.button);
+        iv.setImageBitmap(Constants.appSettings.profilePicture);
+
         // TODO: Move people around for other reasons?
     }
 
@@ -173,9 +192,35 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
     public void getSettingsClicked(View v) {
         PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.action_addcontact:
+                        getContactsClicked(null);
+                        break;
+                    case R.id.action_settings:
+                        userProfilePicClicked(null);
+                        break;
+                    case R.id.action_about:
+                        AppAboutDialog appAboutDialog = new AppAboutDialog();
+                        appAboutDialog.show(getFragmentManager(), "app about dialog");
+                        break;
+
+
+                }
+                return true;
+            }
+        });
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_main, popup.getMenu());
         popup.show();    }
+
+    public void userProfilePicClicked(View v) {
+        appSettingsDialog = new AppSettingsDialog();
+        appSettingsDialog.show(getFragmentManager(), "app settings dialog");
+        iv = (ImageView) v;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -189,7 +234,32 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
                 }
                 break;
+            case USER_PROFILE_PICKER_ACTION:
+                if (resultCode == RESULT_OK)
+                {
+                    try {
+                        final Uri imageUri = data.getData();
+                        final InputStream imgStream = getContentResolver().openInputStream(imageUri);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imgStream);
+                        if (iv != null)
+                            iv.setImageBitmap(selectedImage);
+                        appSettingsDialog.update();
+                    }
+                    catch (FileNotFoundException fnfEx) {
+
+                        fnfEx.printStackTrace();
+                    }
+                }
+                break;
+
         }
     }
+
+    public void settingsUserProfilePicClicked(View v) {
+//        Intent intent = new Intent(Intent.ACTION_PICK);
+//        intent.setType("image/*");
+//        startActivityForResult(intent, this.USER_PROFILE_PICKER_ACTION);
+    }
+
 
 }
