@@ -15,7 +15,10 @@ public class MessageViewActivity extends Activity {
                     new ConversationEntry[] {              // Individual chat entries.
                             new ConversationEntry(MainActivity.me, "Hey"),
                             new ConversationEntry(MainActivity.contacts.get(0), "What's up?"),
-                            new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line.")
+                            new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line."),
+                            new ConversationEntry(MainActivity.contacts.get(0), "Indeed that was a very long line..."),
+                            new ConversationEntry(MainActivity.contacts.get(0), "Exciting!"),
+                            new ConversationEntry(MainActivity.me, "right..."),
                     },
                     true, // Urgent flag.
                     7),   // Days since last contacted.

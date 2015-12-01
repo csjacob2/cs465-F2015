@@ -46,7 +46,7 @@ public class MessageViewAdapter extends ArrayAdapter<Conversation> {
         Conversation conversation = conversations[position];
 
         urgent.setText(conversation.urgent ? "!" : "");
-        image.setImageResource(conversation.withPerson.image);
+        image.setImageBitmap(conversation.withPerson.profilePic);
         name.setText(conversation.withPerson.name);
         timestamp.setText(conversation.timestampString());
         text.setText(conversation.entries.get(conversation.entries.size() - 1).chatText);

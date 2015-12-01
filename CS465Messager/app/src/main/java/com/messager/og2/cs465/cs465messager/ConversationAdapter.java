@@ -2,7 +2,9 @@ package com.messager.og2.cs465.cs465messager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +45,11 @@ public class ConversationAdapter extends ArrayAdapter<Conversation> {
         timestamp = (TextView)row.findViewById(R.id.timestamp);
         text = (TextView)row.findViewById(R.id.text);
 
-        Conversation conversation = conversations[position];
+        final Conversation conversation = conversations[position];
 
         urgent.setText(conversation.urgent ? "!" : "");
-        image.setImageResource(conversation.withPerson.image);
+
+        image.setImageBitmap(conversation.withPerson.profilePic);
         name.setText(conversation.withPerson.name);
         timestamp.setText(conversation.timestamp);
         text.setText(conversation.entries.get(conversation.entries.size() - 1).chatText);

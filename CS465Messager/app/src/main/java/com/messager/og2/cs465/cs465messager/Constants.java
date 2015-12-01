@@ -10,4 +10,6 @@ public class Constants {
             "Co-Workers",
             "+ Create Group..."
     };
+
+    public static SavedSettings appSettings = new SavedSettings();
 }

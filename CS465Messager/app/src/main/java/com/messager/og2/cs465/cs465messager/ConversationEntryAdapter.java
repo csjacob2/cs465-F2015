@@ -2,6 +2,7 @@ package com.messager.og2.cs465.cs465messager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Set;
 
 public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
     private Context context;
@@ -49,12 +51,19 @@ public class ConversationEntryAdapter extends ArrayAdapter<ConversationEntry> {
         if (conversationEntry.person != MainActivity.me)
         {
             left_image.setVisibility(View.GONE);
-
-            right_image.setImageResource(conversationEntry.person.image);
+            Bitmap bm = conversationEntry.person.profilePic;
+            if (conversationEntry.person != null && conversationEntry.person.contactPicMapping != null) {
+                Set<String> keys = conversationEntry.person.contactPicMapping.keySet();
+                for (String key : keys) {
+                    if (conversationEntry.chatText.contains(key)) {
+                        bm = conversationEntry.person.contactPicMapping.get(key);
+                        break;
+                    }
+                }
+            }
+            right_image.setImageBitmap(bm);
             right_image.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             left_image.setImageResource(conversationEntry.person.image);
             left_image.setVisibility(View.VISIBLE);
 
