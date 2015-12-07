@@ -13,8 +13,8 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:layout_marginEnd="35dp"
         android:id="@+id/diag_far"
         android:orientation="vertical"
@@ -25,8 +25,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/diag_mid"
         android:orientation="vertical"
         android:layout_marginTop="27dp"
@@ -36,12 +36,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/diag_near"
         android:orientation="vertical"
         android:layout_marginStart="27dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="80dp"
         android:layout_below="@+id/diag_mid"
         android:layout_toEndOf="@+id/button" />
 
@@ -85,56 +85,56 @@
         android:layout_height="48dp"
         android:src="@drawable/ppc1"
         android:id="@+id/button"
-        android:layout_marginStart="41dp"
-        android:layout_below="@+id/diag_near"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="42dp"
         android:onClick="userProfilePicClicked"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="146dp" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/top_near"
         android:orientation="vertical"
         android:layout_below="@+id/diag_mid"
         android:layout_alignEnd="@+id/button" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/top_mid"
         android:orientation="vertical"
         android:layout_below="@+id/diag_far"
         android:layout_alignStart="@+id/top_near" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/top_far"
         android:orientation="vertical"
         android:layout_below="@+id/linearLayout"
         android:layout_alignStart="@+id/top_mid" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/bottom_near"
         android:orientation="vertical"
+        android:layout_marginBottom="50dp"
         android:layout_alignBottom="@+id/button"
         android:layout_alignStart="@+id/diag_near" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/bottom_mid"
         android:orientation="vertical"
         android:layout_alignTop="@+id/bottom_near"
         android:layout_toStartOf="@+id/diag_far" />
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
         android:id="@+id/bottom_far"
         android:orientation="vertical"
         android:layout_alignTop="@+id/bottom_mid"

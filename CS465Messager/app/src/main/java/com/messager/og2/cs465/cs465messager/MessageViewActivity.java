@@ -13,12 +13,12 @@ public class MessageViewActivity extends Activity {
     static Conversation[] conversations = {
             new Conversation(MainActivity.contacts.get(0), // Who the conversation is with. Bob, in this case.
                     new ConversationEntry[] {              // Individual chat entries.
-                            new ConversationEntry(MainActivity.me, "Hey"),
+                            new ConversationEntry(MainActivity.me, "Hey Bob"),
                             new ConversationEntry(MainActivity.contacts.get(0), "What's up?"),
-                            new ConversationEntry(MainActivity.me, "Nothing! Blah blah blah blah this is a very long line."),
-                            new ConversationEntry(MainActivity.contacts.get(0), "Indeed that was a very long line..."),
-                            new ConversationEntry(MainActivity.contacts.get(0), "Exciting!"),
-                            new ConversationEntry(MainActivity.me, "right..."),
+                            new ConversationEntry(MainActivity.me, "I was wondering if you had time to meet up"),
+                            new ConversationEntry(MainActivity.contacts.get(0), "That'd be great, when would you like to do that?"),
+                            new ConversationEntry(MainActivity.contacts.get(0), "Get back to me when you are free."),
+                            new ConversationEntry(MainActivity.me, "Will do! It'll be soon I promise!"),
                     },
                     true, // Urgent flag.
                     7),   // Days since last contacted.
